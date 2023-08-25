@@ -17,3 +17,9 @@ This is a software for self-driving cars (based on CARLA Simulator).
   - DatasetHandler (class), compute_plane (function), dist_to_plane (function), get_slope_intecept (function), extrapolate_lines (function), find_closest_lines (function): "m6bk.py" file
   - Depth images, RGB images, Segmentation images: "data" folder
   - Output: "images" folder 
+- Course4FinalProject: Implement a functional motion planning stack that can avoid both static and dynamic obstacles while tracking the center line of a lane, while also handling stop signs. This includes behavioral planning logic, path generation, static collision checking, path selection, and velocity profile generation
+  - Behaviour Planning Logic: "behavioural_planner.py" file contains the behavioural logic required to handle a stop sign, i.e., a state machine that transitions between lane following, deceleration to the stop sign, staying stopped, and back to lane following, when it encounters a stop sign
+  - Path Generation: "local_planner.py" and "path_optimizer.py" files compute the goal state set (the set of goal points to plan paths to before path selection), compute the yaw of the car at a set of arc length points for a given spiral, set up the optimization problem for a given path, and generate the path from the resulting spiral once the optimization is complete
+  - Static Collision Checking: "collision_checker.py" file contains circle-based collision checking on the computed path set
+  - Path Selection: "collision_checker.py" file evaluates an objective function over the generated path set to select the best path, i.e., it eliminates paths that are in collision with static obstacles, and selects paths that both track the centerline of the global path
+  - Velocity Profile Generation: "velocity_planner.py" file generates velocity profile that can handle stop signs, lead dynamic obstacles, as well as nominal lane maintenance
